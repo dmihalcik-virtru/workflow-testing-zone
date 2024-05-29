@@ -64,8 +64,8 @@ jobs:
           for x in ${{join(fromJson(needs.release-please.outputs.paths_released), ' ')}}; do
             pkg=github.com/dmihalcik-virtru/workflow-testing-zone/${x}
             echo "Should we update [${pkg}] in [${{ matrix.path }}]?"
-            if grep "$pkg"; then
-              ver=$(jq -r .${x} < ../.release-please-manifest.json)
+            if grep "$pkg"<go.mod; then
+              ver=$(jq -r .${x} < "${GITHUB_WORKSPACE}/.release-please-manifest.json")
               echo "go get ${pkg}@v${ver}"
               go get "${pkg}@v${ver}"
             fi
