@@ -28,7 +28,7 @@ jobs:
           manifest-file: .release-please-manifest.json
       - run: echo "$ALL"
         env:
-          ALL: ${{join(steps.rpa.outputs.*, '\n')}}
+          ALL: ${{toJson(steps.rpa.outputs)}}
       - run: echo paths_released[${{steps.rpa.outputs.paths_released}}]
       - run: echo pr[${{steps.rpa.outputs.pr}}]
       - run: echo prs[${{steps.rpa.outputs.prs}}]
@@ -46,10 +46,9 @@ jobs:
       matrix:
         path: ${{ fromJSON(needs.release-please.outputs.paths_released) }}
     steps:
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
+      - run: |
+          echo update b if a released
+        if: matrix.path == 'a'
       - name: Dump job context
         env:
           JOB_CONTEXT: ${{ toJson(job) }}
