@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.8](https://github.com/dmihalcik-virtru/workflow-testing-zone/compare/a/v0.0.7...a/v0.0.8) (2024-05-29)
+
+
+### Bug Fixes
+
+* **ci:** another attempt to get dep update to work ([be0d3f3](https://github.com/dmihalcik-virtru/workflow-testing-zone/commit/be0d3f329c7f57963a44b76da64967e88da672a7))
+
 ## [0.0.7](https://github.com/dmihalcik-virtru/workflow-testing-zone/compare/a/v0.0.6...a/v0.0.7) (2024-05-29)
 
 
