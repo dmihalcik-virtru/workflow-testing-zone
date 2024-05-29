@@ -7,10 +7,10 @@
   "include-component-in-tag": true,
   "tag-separator": "/",
   "packages": {
-    "lib/fixtures": {
+    "s": {
       "component": "a"
     },
-    "lib/ocrypto": {
+    "b": {
       "component": "b"
     }
   }
