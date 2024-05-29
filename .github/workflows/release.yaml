@@ -11,6 +11,11 @@ jobs:
   release-please:
     runs-on: ubuntu-latest
     steps:
+      - run: |-
+          go work init
+          go work use a
+          go work use b
+          go run ./b/main
       - uses: googleapis/release-please-action@v4
         with:
           token: ${{ secrets.MY_RELEASE_PLEASE_TOKEN }}
