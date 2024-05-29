@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.5](https://github.com/dmihalcik-virtru/workflow-testing-zone/compare/a/v0.0.4...a/v0.0.5) (2024-05-29)
+
+
+### Bug Fixes
+
+* **core:** first try at autocommit ([9c35ea7](https://github.com/dmihalcik-virtru/workflow-testing-zone/commit/9c35ea758ae565793e563c5617b921d86acb23f9))
+
 ## [0.0.4](https://github.com/dmihalcik-virtru/workflow-testing-zone/compare/a/v0.0.3...a/v0.0.4) (2024-05-29)
 
 
