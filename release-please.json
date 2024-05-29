@@ -7,7 +7,7 @@
   "include-component-in-tag": true,
   "tag-separator": "/",
   "packages": {
-    "s": {
+    "a": {
       "component": "a"
     },
     "b": {
