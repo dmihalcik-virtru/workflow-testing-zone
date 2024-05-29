@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.6](https://github.com/dmihalcik-virtru/workflow-testing-zone/compare/a/v0.0.5...a/v0.0.6) (2024-05-29)
+
+
+### Bug Fixes
+
+* **ci:** Another json error ([3652ebb](https://github.com/dmihalcik-virtru/workflow-testing-zone/commit/3652ebbef4270f4e2a0ebbd8a83827533ddf6169))
+
 ## [0.0.5](https://github.com/dmihalcik-virtru/workflow-testing-zone/compare/a/v0.0.4...a/v0.0.5) (2024-05-29)
 
 
