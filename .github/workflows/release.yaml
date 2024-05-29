@@ -13,6 +13,7 @@ jobs:
     outputs:
       paths_released: ${{ steps.rpa.outputs.paths_released }}
       releases_created: ${{ steps.rpa.outputs.releases_created }}
+      to_update: ${{ steps.todo.outputs.TO_UPDATE }}
     steps:
       - uses: actions/checkout@v4
       - run: |-
@@ -29,43 +30,54 @@ jobs:
       - run: echo "$ALL"
         env:
           ALL: ${{toJson(steps.rpa.outputs)}}
+      - id: todo
+        run: |
+          for x in ${{join(steps.rpa.outputs.paths_released, ' ')}}; do
+            echo [$x][]
+            case EXPRESSION in
+              a)
+                echo "TO_UPDATE=['b']" >>"$GITHUB_OUTPUT"
+                ;;
+              b)
+                ;;
+            esac
+          done
       - run: echo paths_released[${{steps.rpa.outputs.paths_released}}]
-      - run: echo pr[${{steps.rpa.outputs.pr}}]
-      - run: echo prs[${{steps.rpa.outputs.prs}}]
-      - run: echo prs_created[${{steps.rpa.outputs.prs_created}}]
-      - run: echo releases_created[${{steps.rpa.outputs.releases_created}}]
-      - run: echo a--release_created[${{steps.rpa.outputs.a--release_created}}]
-      - run: echo b--release_created[${{steps.rpa.outputs.b--release_created}}]
 
   update-go-mods:
     runs-on: ubuntu-latest
     needs: 
       - release-please
-    if: fromJSON(needs.release-please.outputs.releases_created)
+    if: fromJSON(needs.release-please.outputs.releases_created) && fromJSON(needs.release-please.outputs.to_update).length
     strategy:
       matrix:
-        path: ${{ fromJSON(needs.release-please.outputs.paths_released) }}
+        path: ${{ fromJSON(needs.release-please.outputs.to_update) }}
+    permissions:
+      contents: write
     steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - run: |
-          echo update b if a released
-        if: matrix.path == 'a'
-      - name: Dump job context
+          git checkout -b update-go-mods-for-${{matrix.path}}
+          git push -u origin HEAD
+          cd ${{matrix.path}}
+          for x in ${{join(fromJson(needs.release-please.outputs.paths_released), ' ')}}; do
+            pkg=github.com/dmihalcik-virtru/workflow-testing-zone/${x}
+            if grep "$pkg"; then
+              ver=$(jq -r .${x} < ../.release-please-manifest.json)
+              echo "go get ${pkg}@v${ver}"
+              go get "${pkg}@v${ver}"
+            fi
+          done
+      - uses: planetscale/ghcommit-action@v0.1.40
+        with:
+          commit_message: "chore(core): Update dependencies in ${{ matrix.path }}"
+          repo: ${{ github.repository }}
+          branch: update-go-mods-for-${{ matrix.path }}
         env:
-          JOB_CONTEXT: ${{ toJson(job) }}
-        run: echo "$JOB_CONTEXT"
-      - name: Dump steps context
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: create pull request
+        run: gh pr create -B main --fill
         env:
-          STEPS_CONTEXT: ${{ toJson(steps) }}
-        run: echo "$STEPS_CONTEXT"
-      - name: Dump runner context
-        env:
-          RUNNER_CONTEXT: ${{ toJson(runner) }}
-        run: echo "$RUNNER_CONTEXT"
-      - name: Dump strategy context
-        env:
-          STRATEGY_CONTEXT: ${{ toJson(strategy) }}
-        run: echo "$STRATEGY_CONTEXT"
-      - name: Dump matrix context
-        env:
-          MATRIX_CONTEXT: ${{ toJson(matrix) }}
-        run: echo "$MATRIX_CONTEXT"
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
