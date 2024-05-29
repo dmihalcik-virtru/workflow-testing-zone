@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.9](https://github.com/dmihalcik-virtru/workflow-testing-zone/compare/a/v0.0.8...a/v0.0.9) (2024-05-29)
+
+
+### Bug Fixes
+
+* **ci:** don't commit to main ([2296632](https://github.com/dmihalcik-virtru/workflow-testing-zone/commit/2296632ca789ce7a6760aea29c42589a3a8f01e5))
+
 ## [0.0.8](https://github.com/dmihalcik-virtru/workflow-testing-zone/compare/a/v0.0.7...a/v0.0.8) (2024-05-29)
 
 
