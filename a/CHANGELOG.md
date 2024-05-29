@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.10](https://github.com/dmihalcik-virtru/workflow-testing-zone/compare/a/v0.0.9...a/v0.0.10) (2024-05-29)
+
+
+### Bug Fixes
+
+* **ci:** Update visibility should fix go get ([b0ca7c8](https://github.com/dmihalcik-virtru/workflow-testing-zone/commit/b0ca7c8a5be29ae9ef3b13c7c7b8301971c44faf))
+
 ## [0.0.9](https://github.com/dmihalcik-virtru/workflow-testing-zone/compare/a/v0.0.8...a/v0.0.9) (2024-05-29)
 
 
