@@ -33,10 +33,9 @@ jobs:
       - id: todo
         run: |
           for x in ${{join(fromJson(steps.rpa.outputs.paths_released), ' ')}}; do
-            echo [$x][]
-            case EXPRESSION in
+            case "$x" in
               a)
-                echo "TO_UPDATE=['b']" >>"$GITHUB_OUTPUT"
+                echo "TO_UPDATE=['b']">>"$GITHUB_OUTPUT"
                 ;;
               b)
                 ;;
@@ -48,7 +47,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: 
       - release-please
-    if: fromJSON(needs.release-please.outputs.releases_created) && fromJSON(needs.release-please.outputs.to_update).length
+    if: fromJSON(needs.release-please.outputs.releases_created) && fromJSON(needs.release-please.outputs.to_update)
     strategy:
       matrix:
         path: ${{ fromJSON(needs.release-please.outputs.to_update) }}
@@ -64,6 +63,7 @@ jobs:
           cd ${{matrix.path}}
           for x in ${{join(fromJson(needs.release-please.outputs.paths_released), ' ')}}; do
             pkg=github.com/dmihalcik-virtru/workflow-testing-zone/${x}
+            echo "Should we update [${pkg}] in [${{ matrix.path }}]?"
             if grep "$pkg"; then
               ver=$(jq -r .${x} < ../.release-please-manifest.json)
               echo "go get ${pkg}@v${ver}"
