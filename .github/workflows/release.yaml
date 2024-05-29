@@ -32,7 +32,7 @@ jobs:
           ALL: ${{toJson(steps.rpa.outputs)}}
       - id: todo
         run: |
-          for x in ${{join(steps.rpa.outputs.paths_released, ' ')}}; do
+          for x in ${{join(fromJson(steps.rpa.outputs.paths_released), ' ')}}; do
             echo [$x][]
             case EXPRESSION in
               a)
