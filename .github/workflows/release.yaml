@@ -69,7 +69,11 @@ jobs:
               echo "go get ${pkg}@v${ver}"
               go get "${pkg}@v${ver}"
             fi
+            echo "go mod tidy of"
+            cat<go.mod
+            echo "-----"
             go mod tidy
+            cat<go.mod
           done
       - uses: planetscale/ghcommit-action@v0.1.40
         with:
