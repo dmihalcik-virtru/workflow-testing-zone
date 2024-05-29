@@ -10,6 +10,9 @@ on:
 jobs:
   release-please:
     runs-on: ubuntu-latest
+    outputs:
+      paths_released: ${{ steps.rpa.outputs.paths_released }}
+      releases_created: ${{ steps.rpa.outputs.releases_created }}
     steps:
       - uses: actions/checkout@v4
       - run: |-
@@ -17,11 +20,22 @@ jobs:
           go work use a
           go work use b
           go run ./b/main
-      - uses: googleapis/release-please-action@v4
+      - id: rpa
+        uses: googleapis/release-please-action@v4
         with:
           token: ${{ secrets.MY_RELEASE_PLEASE_TOKEN }}
           config-file: release-please.json
           manifest-file: .release-please-manifest.json
+      - run: echo "$ALL"
+        env:
+          ALL: ${{join(steps.rpa.outputs.*, '\n')}}
+      - run: echo paths_released[${{steps.rpa.outputs.paths_released}}]
+      - run: echo pr[${{steps.rpa.outputs.pr}}]
+      - run: echo prs[${{steps.rpa.outputs.prs}}]
+      - run: echo prs_created[${{steps.rpa.outputs.prs_created}}]
+      - run: echo releases_created[${{steps.rpa.outputs.releases_created}}]
+      - run: echo a--release_created[${{steps.rpa.outputs.a--release_created}}]
+      - run: echo b--release_created[${{steps.rpa.outputs.b--release_created}}]
 
   update-go-mods:
     runs-on: ubuntu-latest
