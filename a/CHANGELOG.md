@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.7](https://github.com/dmihalcik-virtru/workflow-testing-zone/compare/a/v0.0.6...a/v0.0.7) (2024-05-29)
+
+
+### Bug Fixes
+
+* **ci:** bad variable ([39d4907](https://github.com/dmihalcik-virtru/workflow-testing-zone/commit/39d4907d3ee9dd8a720f39dfb4746fb191d7af2f))
+
 ## [0.0.6](https://github.com/dmihalcik-virtru/workflow-testing-zone/compare/a/v0.0.5...a/v0.0.6) (2024-05-29)
 
 
