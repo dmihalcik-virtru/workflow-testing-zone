@@ -59,7 +59,7 @@ jobs:
           fetch-depth: 0
       - run: |
           git checkout -b update-go-mods-for-${{matrix.path}}
-          git push -u origin update-go-mods-for-${{matrix.path}}
+          git push -f -u origin update-go-mods-for-${{matrix.path}}
           cd ${{matrix.path}}
           for x in ${{join(fromJson(needs.release-please.outputs.paths_released), ' ')}}; do
             pkg=github.com/dmihalcik-virtru/workflow-testing-zone/${x}
@@ -88,6 +88,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: create pull request
         run: |
+          git status
+          git diff
+          git restore .
           git status
           git diff
           sleep 5
