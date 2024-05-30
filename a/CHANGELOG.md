@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.11](https://github.com/dmihalcik-virtru/workflow-testing-zone/compare/a/v0.0.10...a/v0.0.11) (2024-05-30)
+
+
+### Bug Fixes
+
+* **ci:** bypass sumdb and git branch problem fix ([d4a932f](https://github.com/dmihalcik-virtru/workflow-testing-zone/commit/d4a932f69ebd49dea9b168041615d6b9cc05470a))
+
 ## [0.0.10](https://github.com/dmihalcik-virtru/workflow-testing-zone/compare/a/v0.0.9...a/v0.0.10) (2024-05-29)
 
 
