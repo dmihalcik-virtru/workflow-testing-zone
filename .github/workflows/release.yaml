@@ -53,6 +53,7 @@ jobs:
         path: ${{ fromJSON(needs.release-please.outputs.to_update) }}
     permissions:
       contents: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@v2
         with:
