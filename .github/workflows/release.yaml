@@ -75,6 +75,10 @@ jobs:
             go mod tidy
             cat<go.mod
           done
+          git status
+          git diff
+        env:
+          GONOSUMDB: github.com/dmihalcik-virtru/workflow-testing-zone/${{join(fromJson(needs.release-please.outputs.paths_released), ',github.com/dmihalcik-virtru/workflow-testing-zone/')}}
       - uses: planetscale/ghcommit-action@v0.1.40
         with:
           commit_message: "chore(core): Update dependencies in ${{ matrix.path }}"
@@ -84,8 +88,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: create pull request
         run: |
+          git status
+          git diff
           sleep 5
           git pull origin update-go-mods-for-${{ matrix.path }}
+          git status
+          git diff
           gh pr create -B main -H update-go-mods-for-${{ matrix.path }} --fill
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
