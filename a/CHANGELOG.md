@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.12](https://github.com/dmihalcik-virtru/workflow-testing-zone/compare/a/v0.0.11...a/v0.0.12) (2024-05-30)
+
+
+### Bug Fixes
+
+* **ci:** git restore ([4047965](https://github.com/dmihalcik-virtru/workflow-testing-zone/commit/4047965591dbe9bba2e31d07fd54ae6cf407a6d3))
+
 ## [0.0.11](https://github.com/dmihalcik-virtru/workflow-testing-zone/compare/a/v0.0.10...a/v0.0.11) (2024-05-30)
 
 
