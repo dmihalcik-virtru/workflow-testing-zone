@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.13](https://github.com/dmihalcik-virtru/workflow-testing-zone/compare/a/v0.0.12...a/v0.0.13) (2024-05-30)
+
+
+### Bug Fixes
+
+* **ci:** adds pr write permission ([f6d048f](https://github.com/dmihalcik-virtru/workflow-testing-zone/commit/f6d048fd7c675e73fc751f90520f52d0c32cf7d6))
+
 ## [0.0.12](https://github.com/dmihalcik-virtru/workflow-testing-zone/compare/a/v0.0.11...a/v0.0.12) (2024-05-30)
 
 
